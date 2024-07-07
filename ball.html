@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Fortune</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="ball">
+            <div class="miniball">
+                <h1>8</h1>
+            </div>
+        </div>
+        <button class="btn">✧˚ · .Click Here. · ˚✧</button>
+        <div class="boxx">
+            <div class="msgg" id="myDiv"></div>
+        </div>
+        
+    </div>
+
+    
+
+    <script>
+        class PupilFollowCursor {
+          constructor(eyeSelector, pupilSelector) {
+            this.eye = document.querySelector(eyeSelector);
+            this.pupil = this.eye.querySelector(pupilSelector);
+            this.eyeCenterX = this.eye.offsetLeft + this.eye.offsetWidth / 2;
+            this.eyeCenterY = this.eye.offsetTop + this.eye.offsetHeight / 2;
+        
+            this.attachMouseMoveListener();
+          }
+        
+          attachMouseMoveListener() {
+            document.addEventListener('mousemove', (e) => this.movePupil(e));
+          }
+        
+          movePupil(e) {
+            
+            const angle = Math.atan2(e.clientY - this.eyeCenterY, e.clientX - this.eyeCenterX);
+        
+            
+            const maxRadius = (this.eye.offsetWidth - this.pupil.offsetWidth) / 2;
+        
+            
+            const newX = maxRadius * Math.cos(angle);
+            const newY = maxRadius * Math.sin(angle);
+        
+        
+            this.pupil.style.transform = `translate(${newX}px, ${newY}px)`;
+          }
+        }
+        
+        
+        //const pupilFollowCursor1 = new PupilFollowCursor('.ball', '.miniball');
+        //const pupilFollowCursor2 = new PupilFollowCursor('.container', '.ball');
+    </script>
+
+    <script>
+        let msg = ''
+        let randomeNumber = Math.floor(Math.random()*6)
+        switch (randomeNumber){
+            case 0:
+                msg = 'Yes'
+            break
+            case 1:
+                msg = 'No'
+            break
+            case 2:
+                msg = 'Maybe'
+            break
+            case 3:
+                msg = 'Stfu'
+            break
+            case 4:
+                msg = 'Chances are below 0'
+            break
+            case 5:
+                msg = 'Absolutely'
+            break
+
+
+        }
+        document.querySelector(".msgg").textContent = msg;
+    
+    
+
+        document.querySelector('.btn').addEventListener('click', function() {
+            var div = document.querySelector('.msgg');
+            div.style.display = 'block';
+        });
+
+    </script>
+
+
+
+
+</body>
+</html>
